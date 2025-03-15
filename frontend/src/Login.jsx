@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -18,6 +20,8 @@ const Login = () => {
     if (response.ok) {
       setMessage("Login successful!");
       localStorage.setItem("token", data.token); // Store JWT token
+      onLogin(); // Update the login state in App
+      navigate("/"); // Redirect to the home page
     } else {
       setMessage(data.error || "Login failed");
     }
