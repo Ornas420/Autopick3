@@ -27,7 +27,11 @@ const Register = () => {
       <form onSubmit={handleRegister}>
         <input
           type="text"
+<<<<<<< HEAD
           placeholder="Username"
+=======
+          placeholder="Email"
+>>>>>>> Feature
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
