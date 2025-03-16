@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
+import "./App.css"; // Ensure CSS is applied
 
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -18,36 +19,44 @@ const Login = ({ onLogin }) => {
     const data = await response.json();
 
     if (response.ok) {
-      setMessage("Login successful!");
-      localStorage.setItem("token", data.token); // Store JWT token
-      onLogin(); // Update the login state in App
-      navigate("/"); // Redirect to the home page
+      localStorage.setItem("token", data.token);
+      onLogin();
+      navigate("/");
     } else {
       setMessage(data.error || "Login failed");
     }
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Email"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
-      <p>{message}</p>
+    <div className="form-wrapper">
+      <div className="form-container">
+        <h2>Login</h2>
+        <p>Login to continue</p>
+        <form onSubmit={handleLogin}>
+          <input
+            type="text"
+            className="input-field"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            className="input-field"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit" className="btn">Login</button>
+        </form>
+        {message && <p className="error-message">{message}</p>}
+
+        <div className="auth-links">
+          <p>Don't have an account? <a href="/register">Sign up</a></p>
+        </div>
+      </div>
     </div>
   );
 };
