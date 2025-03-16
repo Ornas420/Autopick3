@@ -9,7 +9,7 @@ def test_user():
     return {"username": "testuser2", "password": "testpass"}
 
 def test_logout_flow(test_user):
-    """Test login, logout, and token invalidation."""
+
 
 
     requests.post(f"{BASE_URL}/register", json=test_user)
