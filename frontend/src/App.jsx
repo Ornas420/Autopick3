@@ -15,9 +15,9 @@ function App() {
     if (token) {
       setIsLoggedIn(true);
     } else {
-      // ✅ Allow access to register page even when not logged in
+      // ✅ Redirect to login unless already on Register page
       if (location.pathname !== "/register") {
-        navigate("/login"); // Redirect if not logged in
+        navigate("/login");
       }
     }
   }, [navigate, location.pathname]);
@@ -30,19 +30,21 @@ function App() {
 
   return (
     <>
-      {!isLoggedIn && (
-        <nav>
+      {/* ✅ Show nav only when NOT logged in and NOT on login/register pages */}
+      {!isLoggedIn && location.pathname !== "/login" && location.pathname !== "/register" && (
+        <nav className="auth-nav">
           <Link to="/register">Register</Link>
           <Link to="/login">Login</Link>
         </nav>
       )}
 
+      {/* ✅ Logout button when logged in */}
       {isLoggedIn && (
         <button className="logout-btn" onClick={handleLogout}>Logout</button>
       )}
 
       <Routes>
-        <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
+        <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
       </Routes>
@@ -50,10 +52,11 @@ function App() {
   );
 }
 
-const Home = ({ isLoggedIn }) => (
-  <div>
+// ✅ Improved Home Page
+const Home = () => (
+  <div className="home-container">
     <h1>Welcome to Autopick!</h1>
-    <p>Please answer the following questions:</p>
+    <p>Answer the following questions:</p>
     <ul>
       <li>Do you want a fuel-efficient car?</li>
       <li>Do you need cargo space?</li>
