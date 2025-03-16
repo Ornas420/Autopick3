@@ -1,115 +1,42 @@
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
-body {
-  background-color: #121212;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-/* Centering the form */
-.form-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-}
-
-/* Login/Register Box */
-.form-container {
-  background-color: #1a1a1a;
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
   padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  width: 350px;
   text-align: center;
 }
 
-/* Input Fields */
-.input-field {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-/* Button */
-.btn {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-/* Logout Button */
-.logout-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 10px 15px;
-  background-color: #ff4d4d; /* Red Logout Button */
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 14px;
-  font-weight: bold;
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.logout-btn:hover {
-  background-color: #cc0000; /* Darker Red on Hover */
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
 }
 
-.btn:hover {
-  background-color: #0056b3;
+.card {
+  padding: 2em;
 }
 
-/* Error Message (Red) */
-.error-message {
-  color: red;
-  margin-top: 10px;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-/* Success Message (Green) */
-.success-message {
-  color: green;
-  margin-top: 10px;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-
-/* Auth Links */
-.auth-links {
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-.auth-links a {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.auth-links a:hover {
-  text-decoration: underline;
-}
-
-/* Hide the old top navigation */
-nav {
-  display: none !important;
+.read-the-docs {
+  color: #888;
 }
